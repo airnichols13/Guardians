@@ -24,10 +24,24 @@ h2 {
   font-size: $text-4xl;
 }
 
+h3 {
+  font-size: $text-3xl;
+}
+
 // Inputs
+.inputFields {
+  > label ~ label {
+    margin-top: $space-3;
+  }
+}
+
 label {
+  display: flex;
+  align-items: center;
+
   .inputText {
     margin-right: $space-2;
+    line-height: 1.2;
   }
 }
 
@@ -42,12 +56,91 @@ select {
   }
 }
 
+// Checkboxes
+.checkboxLabel {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    .checkMark {
+      background-color: #aaa;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .checkMark {
+      background-color: $cleBlue;
+
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  .inputText {
+    display: flex;
+    flex-flow: column;
+
+    > span {
+      display: flex;
+      align-items: center;
+
+      & ~ span {
+        margin-top: $space-1;
+      }
+
+      > span {
+        & ~ span {
+          margin-left: $space-1;
+        }
+      }
+    }
+  }
+
+  .checkMark {
+    &:after {
+      left: 8px;
+      top: 5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.checkMark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 21px;
+  width: 21px;
+  background-color: #ccc;
+  transition: background-color 0.1s linear;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}
+
 // Generic Classes
 .lightText {
   color: $lightText;
 }
 
 .box {
+  position: relative;
+  z-index: 1;
   padding: $space-5;
   border-radius: $rounded;
   background-color: $white;

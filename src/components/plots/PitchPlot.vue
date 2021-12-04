@@ -37,7 +37,7 @@
             :cx="p.x"
             :cy="scaleY(p.y)"
             :r="radius"
-            :fill="fill"
+            :fill="fill(p)"
             :fill-opacity="p.isSelected ? 1 : fillOpacity"
             :stroke="p.isSelected ? selectedStroke : stroke"
             :stroke-opacity="
@@ -95,11 +95,13 @@ Example pitches
  */
 import { selectableMixin } from "../../utility/selectable";
 
+import playerSvc from "../playerSvc";
+
 export default {
   mixins: [selectableMixin],
   props: {
     width: {
-      default: "200px",
+      default: "250px",
       type: String,
     },
     backgroundColor: {
@@ -144,7 +146,7 @@ export default {
       selectedStroke: "gold", //-- OPTIONAL - selected outline color
       selectedStrokeWidth: 2, //-- OPTIONAL - selected stroke width - in feet
       fillOpacity: 1, //-- REQUIRED - fill opacity
-      fill: "blue", //-- REQUIRED - fill color
+      // fill: "blue", //-- REQUIRED - fill color
       radius: 1.5 / 12, //-- REQUIRED - in feet
       // isSelected: false, //-- OPTIONAL
       // isSelectable: true, //-- OPTIONAL (if falsy, balls cannot be selected)
@@ -159,6 +161,9 @@ export default {
   methods: {
     scaleY(v) {
       return this.coordSystem.maxY - v + this.coordSystem.minY;
+    },
+    fill(pitch) {
+      return playerSvc.pitchColor(pitch.pitchName);
     },
   },
 };

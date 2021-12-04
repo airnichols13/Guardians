@@ -78,6 +78,7 @@ export default {
     left: 0;
     transform: translate((0, 0));
     width: 100%;
+    max-width: 100%;
     padding: $space-3;
     border-radius: 0;
   }

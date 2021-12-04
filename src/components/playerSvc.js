@@ -41,4 +41,23 @@ export default {
         return response.data;
       });
   },
+
+  pitchColor: function (pitchName) {
+    switch (true) {
+      case pitchName === "Changeup":
+        return "yellow";
+      case pitchName === "Curveball":
+        return "green";
+      case pitchName === "Cutter":
+        return "grey";
+      case pitchName === "Fastball":
+        return "red";
+      case pitchName === "Sinker":
+        return "orange";
+      case pitchName === "Slider":
+        return "blue";
+      default:
+        return "black";
+    }
+  },
 };
