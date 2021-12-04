@@ -43,7 +43,7 @@
               p.isSelected ? selectedStrokeOpacity : strokeOpacity
             "
             :stroke-width="p.isSelected ? selectedStrokeWidth : strokeWidth"
-            @click="selectPitch(p)"
+            @mouseup="selectPitch(p)"
           />
         </template>
         <rect
@@ -143,9 +143,10 @@ export default {
       // y: 2.17, -- REQUIRED -center of ball - in feet
       stroke: "black", //-- REQUIRED - outline color
       strokeWidth: 0.01, //-- REQUIRED - outline width - in feet
-      strokeOpacity: 1, //-- REQUIRED - outline opacity
+      strokeOpacity: 0.75, //-- REQUIRED - outline opacity
+      selectedStrokeOpacity: 1,
       selectedStroke: "gold", //-- OPTIONAL - selected outline color
-      selectedStrokeWidth: 2, //-- OPTIONAL - selected stroke width - in feet
+      selectedStrokeWidth: 1, //-- OPTIONAL - selected stroke width - in feet
       fillOpacity: 0.75, //-- REQUIRED - fill opacity
       // fill: "blue", //-- REQUIRED - fill color
       radius: 1.5 / 12, //-- REQUIRED - in feet
@@ -167,6 +168,10 @@ export default {
       return playerSvc.pitchColor(pitch.pitchName);
     },
     selectPitch(pitch) {
+      this.pitches.forEach((p) => {
+        p.isSelected = false;
+      });
+      pitch.isSelected = true;
       this.$emit("selectedPitch", pitch);
     },
   },
