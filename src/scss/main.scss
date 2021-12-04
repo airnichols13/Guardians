@@ -20,8 +20,8 @@ h1 {
   font-size: $text-5xl;
 }
 
-.lightText {
-  color: $lightText;
+h2 {
+  font-size: $text-4xl;
 }
 
 // Inputs
@@ -40,4 +40,16 @@ select {
   &:hover {
     box-shadow: 0 0 $space-2 $grayBg;
   }
+}
+
+// Generic Classes
+.lightText {
+  color: $lightText;
+}
+
+.box {
+  padding: $space-5;
+  border-radius: $rounded;
+  background-color: $white;
+  box-shadow: $shadow;
 }

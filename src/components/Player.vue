@@ -1,6 +1,6 @@
 <template>
   <div class="player-page">
-    <PlayerBanner />
+    <PlayerBanner :playerInfo="playerInfo" />
 
     <div>
       <Panel title="All Pitches">
@@ -42,7 +42,7 @@ export default {
     },
     getPlayer: function () {
       playerSvc.getPlayers(this.playerId).then((player) => {
-        this.playerInfo = player;
+        this.playerInfo = player.playerDetail;
       });
     },
   },

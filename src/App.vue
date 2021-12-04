@@ -4,7 +4,9 @@
 
     <SelectPlayer :players="players" @selectPlayer="playerSelected" />
 
-    <Player :key="playerId" :playerId="playerId" v-if="playerId" />
+    <div class="playerContainer">
+      <Player :key="playerId" :playerId="playerId" v-if="playerId" />
+    </div>
   </div>
 </template>
 
@@ -71,5 +73,13 @@ export default {
       58px + #{$cleHeaderHeight}
     ); // TODO: make variable for select bar height
   }
+}
+
+.playerContainer {
+  padding: $space-10;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  max-width: calc(100% - 2rem);
 }
 </style>
