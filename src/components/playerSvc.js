@@ -28,9 +28,7 @@ export default {
     let params = {};
 
     if (playerId) {
-      params = {
-        playerId: playerId,
-      };
+      params.playerId = playerId;
     }
 
     return axios
