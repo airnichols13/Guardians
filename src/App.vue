@@ -1,5 +1,7 @@
 <template>
   <div id="app" :class="{ playerSelected: playerId }">
+    <CleHeader />
+
     <SelectPlayer :players="players" @selectPlayer="playerSelected" />
 
     <Player :key="playerId" :playerId="playerId" v-if="playerId" />
@@ -9,6 +11,7 @@
 <script>
 import playerSvc from "./components/playerSvc";
 
+import CleHeader from "./components/CleHeader.vue";
 import Player from "./components/Player";
 import SelectPlayer from "./components/SelectPlayer";
 
@@ -17,6 +20,7 @@ export default {
   components: {
     Player,
     SelectPlayer,
+    CleHeader,
   },
   data() {
     return {
@@ -47,8 +51,25 @@ export default {
   background-color: $pageBg;
   min-height: 100%;
 
+  &::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    width: 90%;
+    margin: 0 auto;
+    background: url("./assets/Cleveland-Guardians-logo.svg") top center
+      no-repeat;
+    background-size: contain;
+    opacity: 0.03;
+  }
+
   &.playerSelected {
-    padding-top: 58px;
+    padding-top: calc(
+      58px + #{$cleHeaderHeight}
+    ); // TODO: make variable for select bar height
   }
 }
 </style>

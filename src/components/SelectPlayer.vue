@@ -77,7 +77,7 @@ export default {
 
   &.playerSelected {
     position: fixed;
-    top: 0;
+    top: $cleHeaderHeight;
     left: 0;
     transform: translate((0, 0));
     width: 100%;
