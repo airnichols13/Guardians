@@ -52,6 +52,7 @@ export default {
 .selectPlayer {
   overflow: hidden;
   position: absolute;
+  z-index: 10;
   display: flex;
   flex-flow: column;
   justify-content: center;
