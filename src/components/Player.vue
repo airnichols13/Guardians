@@ -59,7 +59,7 @@
       </div>
 
       <div class="pitchPlotGraph">
-        <Panel title="All Pitches">
+        <Panel title="Pitch Plot">
           <PitchPlot :pitches="pitches" />
         </Panel>
       </div>
