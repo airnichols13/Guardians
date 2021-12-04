@@ -22,23 +22,22 @@ export default {
     Panel,
     PitchPlot,
   },
+  props: {
+    playerId: {
+      default: undefined, // 105859
+      type: [Number, undefined],
+    },
+  },
   data() {
     return {
       playerInfo: {},
       pitches: [],
-      playerId: 105859,
-      players: [],
     };
   },
   methods: {
     getPitches: function () {
       playerSvc.getPitches(this.playerId).then((pitches) => {
         this.pitches = pitches.pitches;
-      });
-    },
-    getPlayers: function () {
-      playerSvc.getPlayers().then((players) => {
-        this.players = players;
       });
     },
     getPlayer: function () {
@@ -48,8 +47,8 @@ export default {
     },
   },
   mounted() {
+    // TODO: chain these api calls
     this.getPitches();
-    this.getPlayers();
     this.getPlayer();
   },
 };
