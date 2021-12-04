@@ -1,5 +1,8 @@
+@import "./_variables.scss";
+@import "./_reset.scss";
+
 html {
-  font-family:  "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -7,4 +10,34 @@ html,
 body {
   height: 100%;
   margin: 0;
+}
+
+body {
+  color: $darkText;
+}
+
+h1 {
+  font-size: $text-5xl;
+}
+
+.lightText {
+  color: $lightText;
+}
+
+// Inputs
+label {
+  .inputText {
+    margin-right: $space-2;
+  }
+}
+
+select {
+  padding: $space-2 $space-1;
+  border-radius: $rounded;
+  border: solid 1px $secondaryText;
+  transition: all 200ms linear;
+
+  &:hover {
+    box-shadow: 0 0 $space-2 $grayBg;
+  }
 }
