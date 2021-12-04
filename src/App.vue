@@ -77,7 +77,7 @@ export default {
 }
 
 .playerContainer {
-  padding: $space-10;
+  padding: $space-10 0;
   margin-left: auto;
   margin-right: auto;
   width: 800px;

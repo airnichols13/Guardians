@@ -187,12 +187,20 @@ export default {
 
 .pitchPlotContainer {
   display: flex;
+  @media only screen and (max-width: 799px) {
+    flex-flow: column;
+  }
 
   > div {
     flex: 1 1 100%;
 
     & ~ div {
-      margin-left: $space-10;
+      @media only screen and (min-width: 800px) {
+        margin-left: $space-10;
+      }
+      @media only screen and (max-width: 799px) {
+        margin-top: $space-10;
+      }
     }
   }
 }
@@ -254,8 +262,10 @@ export default {
 }
 
 .pitchPropContainer {
-  column-count: 2;
-  column-gap: $space-10;
+  @media only screen and (min-width: 800px) {
+    column-count: 2;
+    column-gap: $space-10;
+  }
 }
 
 .pitchProp {
