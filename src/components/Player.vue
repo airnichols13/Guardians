@@ -9,6 +9,7 @@
         </div>
 
         <div class="inputFields">
+          <!-- TODO: is toggling all useful? -->
           <!-- <label class="checkboxLabel">
             <input
               type="checkbox"
@@ -60,8 +61,25 @@
 
       <div class="pitchPlotGraph">
         <Panel title="Pitch Plot">
-          <PitchPlot :pitches="pitches" />
+          <PitchPlot :pitches="pitches" @selectedPitch="pitchSelected" />
         </Panel>
+      </div>
+    </div>
+
+    <div class="selectedPitchContainer box" v-if="selectedPitch.pitcherId">
+      <div>
+        <h3>Selected Pitch:</h3>
+      </div>
+
+      <div class="pitchPropContainer">
+        <span
+          class="pitchProp"
+          v-for="(value, name, index) in selectedPitch"
+          :key="index"
+        >
+          <span class="name">{{ name }}:</span>
+          <span class="value">{{ value }}</span>
+        </span>
       </div>
     </div>
   </div>
@@ -81,7 +99,7 @@ export default {
   },
   props: {
     playerId: {
-      default: undefined, // 105859
+      default: undefined, // ex: 105859
       type: [Number, undefined],
     },
   },
@@ -91,6 +109,7 @@ export default {
       allPitches: [],
       selectAllPitchNames: true,
       selectedPitchNames: [],
+      selectedPitch: {},
     };
   },
   computed: {
@@ -106,6 +125,9 @@ export default {
     },
   },
   methods: {
+    pitchSelected: function (pitch) {
+      this.selectedPitch = pitch;
+    },
     pitchColor: function (pitchName) {
       return playerSvc.pitchColor(pitchName);
     },
@@ -220,6 +242,45 @@ export default {
         color: $secondaryText;
       }
     }
+  }
+}
+
+.selectedPitchContainer {
+  > div {
+    & ~ div {
+      margin-top: $space-4;
+    }
+  }
+}
+
+.pitchPropContainer {
+  column-count: 2;
+  column-gap: $space-10;
+}
+
+.pitchProp {
+  display: flex;
+  align-items: center;
+
+  & ~ span {
+    margin-top: $space-4;
+  }
+
+  > span {
+    flex: 1 1 100%;
+
+    &::after {
+      content: "";
+      display: block;
+      border-bottom: dotted 1px #ccc;
+    }
+  }
+
+  .name {
+    text-transform: capitalize;
+  }
+  .value {
+    text-align: right;
   }
 }
 </style>

@@ -28,7 +28,6 @@
         <template v-for="(p, i) in pitches">
           <circle
             :key="'pitch-' + i"
-            v-show="isVisible && !p.hidden"
             :class="[
               p.classList,
               { visible: isVisible },
@@ -44,6 +43,7 @@
               p.isSelected ? selectedStrokeOpacity : strokeOpacity
             "
             :stroke-width="p.isSelected ? selectedStrokeWidth : strokeWidth"
+            @click="selectPitch(p)"
           />
         </template>
         <rect
@@ -54,6 +54,7 @@
           stroke="#000000"
           :stroke-width="0.02"
           fill-opacity="0"
+          style="pointer-events: none"
         />
 
         <rect
@@ -145,7 +146,7 @@ export default {
       strokeOpacity: 1, //-- REQUIRED - outline opacity
       selectedStroke: "gold", //-- OPTIONAL - selected outline color
       selectedStrokeWidth: 2, //-- OPTIONAL - selected stroke width - in feet
-      fillOpacity: 1, //-- REQUIRED - fill opacity
+      fillOpacity: 0.75, //-- REQUIRED - fill opacity
       // fill: "blue", //-- REQUIRED - fill color
       radius: 1.5 / 12, //-- REQUIRED - in feet
       // isSelected: false, //-- OPTIONAL
@@ -164,6 +165,9 @@ export default {
     },
     fill(pitch) {
       return playerSvc.pitchColor(pitch.pitchName);
+    },
+    selectPitch(pitch) {
+      this.$emit("selectedPitch", pitch);
     },
   },
 };

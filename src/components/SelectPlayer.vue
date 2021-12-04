@@ -64,8 +64,8 @@ export default {
   padding: $space-10 $space-5;
   max-width: calc(100vw - #{$space-4});
   max-height: calc(100vh - #{$space-4});
-  transition: top 0.2s ease, left 0.2s ease, transform 0.2s ease,
-    padding 0.2s ease;
+  transition: top $transition, left $transition, transform $transition,
+    padding $transition;
 
   > div {
     & ~ div {
