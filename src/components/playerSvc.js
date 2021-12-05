@@ -1,22 +1,19 @@
-import axios from "axios";
-
-axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
-
 export default {
   // https://cle-fe-challenge-services.vercel.app/api/pitches?playerId=105859
-  getPitches: function (playerId) {
+  getPitches: async function (playerId) {
     if (playerId) {
       const params = {
         playerId: playerId,
       };
 
-      return axios
-        .get("api/pitches", {
-          params: params,
-        })
-        .then(function (response) {
-          return response.data;
-        });
+      const pitches = await fetch(
+        "https://cle-fe-challenge-services.vercel.app/api/pitches?" +
+          new URLSearchParams(params)
+      ).then((response) => {
+        return response.json();
+      });
+
+      return pitches;
     }
 
     throw Error("No player id!");
@@ -24,20 +21,21 @@ export default {
 
   // https://cle-fe-challenge-services.vercel.app/api/players
   // https://cle-fe-challenge-services.vercel.app/api/players?playerId=105859
-  getPlayers: function (playerId) {
+  getPlayers: async function (playerId) {
     let params = {};
 
     if (playerId) {
       params.playerId = playerId;
     }
 
-    return axios
-      .get("api/players", {
-        params: params,
-      })
-      .then(function (response) {
-        return response.data;
-      });
+    const players = await fetch(
+      "https://cle-fe-challenge-services.vercel.app/api/players?" +
+        new URLSearchParams(params)
+    ).then((response) => {
+      return response.json();
+    });
+
+    return players;
   },
 
   pitchColor: function (pitchName) {
